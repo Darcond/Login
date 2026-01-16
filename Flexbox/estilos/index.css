@@ -1,0 +1,102 @@
+.navbar {
+    background-color: #ec2d2d;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ec2d2d;
+    border-radius: 4px;
+}
+
+.navbar ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.navbar ul li {
+    margin: 0 15px;
+}
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+    display: block;
+}
+.navbar ul li a:hover {
+    background-color: #575757;
+}
+.login-box {
+    background-color: #ec2d2d;
+    color: white;
+    width: 300px;
+    margin: 80px auto;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+.footer
+{
+    background-color: #ec2d2d;
+    justify-content: center;
+    display: flex;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.footer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+.footer ul li {
+    margin: 0 15px;
+}
+.footer ul li a {
+    color: white;
+    text-decoration: none;
+}
+.login-box label {
+    display: inline-block;
+    width: 45%;
+    text-align: left;
+    margin-bottom: 10px;
+}
+.login-box input[type="text"],
+.login-box input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 4px;
+}
+.login-box button {
+    width: 100%;
+    background-color: red;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px;
+    margin-top: 10px;
+}
+.login-box button:hover {
+    background-color: #e01818;
+}
+.login-box .forgot-password {
+    background: none;
+    border: none;
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 10px;
+}
+.login-box .forgot-password:hover {
+    color: #ddd;
+}

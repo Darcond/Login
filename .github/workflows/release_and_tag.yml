@@ -1,0 +1,48 @@
+name: Workflow Principal
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  update_version:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Crear archivo de version
+        run: |
+          echo "1.0.${{ github.run_number }}" > VERSION.txt
+          echo "fecha=$(date +'%d-%m-%Y')" >> VERSION.txt
+      - name: Commit y Push
+        run: |
+          git config --local user.name 'github-actions[bot]'
+          git config --local user.email 'github-actions[bot]@users.noreply.github.com'
+          git add VERSION.txt
+          git commit -m 'Actualizar VERSION.txt [skip ci]' || echo "No hay cambios"
+          git push origin main
+
+  release:
+    runs-on: ubuntu-latest
+    needs: update_version
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Crear Tag y Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: Release v1.0.${{ github.run_number }}
+          body: "Nueva versión automatizada. Incluye archivo VERSION.txt actualizado."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

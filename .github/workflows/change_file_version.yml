@@ -1,0 +1,28 @@
+name: Actualizar version
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update_version:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Crear archivo de version
+        run: |
+          echo "1.0.0" > VERSION.txt
+          echo "fecha=$(date +'%d-%m-%Y')" >> VERSION.txt
+
+      - name: Commit y Push de la versión
+        run: |
+          git config --local user.name 'github-actions[bot]'
+          git config --local user.email 'github-actions[bot]@users.noreply.github.com'
+          git add VERSION.txt
+          git commit -m 'Actualizar VERSION.txt [skip ci]' || echo "No hay cambios para confirmar"
+          git push origin main
